@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hotels_app/bloc/hotel_bloc.dart';
+import 'package:hotels_app/bloc/hotel_bloc/hotel_bloc.dart';
 
 import 'features.dart';
 import 'more_info.dart';

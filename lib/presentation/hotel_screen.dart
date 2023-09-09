@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hotels_app/bloc/hotel_bloc.dart';
+import 'package:hotels_app/bloc/hotel_bloc/hotel_bloc.dart';
 import 'package:hotels_app/main.dart';
 import 'apartment_screen.dart';
 import 'widgets/common/custom_appbar.dart';
@@ -12,7 +12,7 @@ class HotelScreen extends StatelessWidget {
   const HotelScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return SafeArea(
       minimum: const EdgeInsets.only(top: 50),
       child: BlocProvider(

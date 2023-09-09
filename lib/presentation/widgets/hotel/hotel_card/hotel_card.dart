@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../bloc/hotel_bloc.dart';
+import '../../../../bloc/hotel_bloc/hotel_bloc.dart';
 import '../../common/carousel_widget.dart';
 import '../../common/price.dart';
 import '../../common/rate.dart';

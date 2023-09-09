@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:masked_text_field/masked_text_field.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField(
+  CustomTextField(
       {super.key,
       required this.hintText,
       required this.inputType,
-      required this.mask,
       required this.prefixText,
-      required this.textController});
+      required this.textController,
+      required this.validate});
+
   final TextInputType inputType;
 
   final String hintText;
-  final String mask;
   final String prefixText;
+  final String? Function(String?) validate;
   final TextEditingController textController;
 
   @override
   Widget build(BuildContext context) {
-    return MaskedTextField(
-      inputDecoration: InputDecoration(
-        counterText: "",
+    return TextFormField(
+      decoration: InputDecoration(
         prefixText: prefixText,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -40,9 +40,8 @@ class CustomTextField extends StatelessWidget {
         ),
       ),
       keyboardType: inputType,
-      mask: mask,
-      textFieldController: textController,
-      onChange: (String value) {},
+      validator: validate,
+      controller: textController,
     );
   }
 }

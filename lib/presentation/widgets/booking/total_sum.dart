@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hotels_app/bloc/room_reservation_bloc.dart';
+import 'package:hotels_app/bloc/room_reservation_bloc/room_reservation_bloc.dart';
 
 import 'booking_info.dart';
 

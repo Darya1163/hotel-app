@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'custom_form.dart';
 
 class ExpansionForm extends StatefulWidget {
-  const ExpansionForm(
-      {super.key, required this.isExpanded, required this.title});
+  ExpansionForm({
+    super.key,
+    required this.isExpanded,
+    required this.title,
+  });
+
   final bool isExpanded;
   final String title;
-
   @override
   State<ExpansionForm> createState() => _ExpansionFormState();
 }
@@ -23,6 +26,13 @@ class _ExpansionFormState extends State<ExpansionForm> {
   TextEditingController passNumInput = TextEditingController();
   TextEditingController passPeriodInput = TextEditingController();
 
+    // final String Function(String?) validate;
+  String? validate(String? value) {
+    if ((value??'').isEmpty) {
+      return 'Please enter the value';
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +72,8 @@ class _ExpansionFormState extends State<ExpansionForm> {
                   textController: nameInput,
                   hintText: 'Имя',
                   inputType: TextInputType.text,
-                  mask: '',
                   prefixText: '',
+                  validate: validate,
                 ),
               ),
               const SizedBox(height: 8),
@@ -73,8 +83,8 @@ class _ExpansionFormState extends State<ExpansionForm> {
                   textController: surnameInput,
                   hintText: 'Фамилия',
                   inputType: TextInputType.text,
-                  mask: '',
                   prefixText: '',
+                  validate: validate,
                 ),
               ),
               const SizedBox(height: 8),
@@ -84,8 +94,8 @@ class _ExpansionFormState extends State<ExpansionForm> {
                   textController: birthInput,
                   hintText: 'Дата рождения',
                   inputType: TextInputType.datetime,
-                  mask: '',
                   prefixText: '',
+                  validate: validate,
                 ),
               ),
               const SizedBox(height: 8),
@@ -95,8 +105,8 @@ class _ExpansionFormState extends State<ExpansionForm> {
                   textController: countryInput,
                   hintText: 'Гражданство',
                   inputType: TextInputType.text,
-                  mask: '',
                   prefixText: '',
+                  validate: validate,
                 ),
               ),
               const SizedBox(height: 8),
@@ -106,8 +116,8 @@ class _ExpansionFormState extends State<ExpansionForm> {
                   textController: passNumInput,
                   hintText: 'Номер загранпаспорта',
                   inputType: TextInputType.number,
-                  mask: '',
                   prefixText: '',
+                  validate: validate,
                 ),
               ),
               const SizedBox(height: 8),
@@ -117,8 +127,8 @@ class _ExpansionFormState extends State<ExpansionForm> {
                   textController: passPeriodInput,
                   hintText: 'Срок действия загранпаспорта',
                   inputType: TextInputType.text,
-                  mask: '',
                   prefixText: '',
+                  validate: validate,
                 ),
               ),
               const SizedBox(height: 16),

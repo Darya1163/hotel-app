@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../data/failure.dart';
-import '../domain/hotel.dart';
-import '../repository/hotel_repository.dart';
+import '../../data/failure.dart';
+import '../../domain/hotel.dart';
+import '../../repository/hotel_repository.dart';
 
 
 part 'hotel_state.dart';
