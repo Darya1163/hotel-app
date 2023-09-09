@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'custom_form.dart';
 
 class ExpansionForm extends StatefulWidget {
-  const ExpansionForm(
-      {super.key, required this.isExpanded, required this.title});
+  const ExpansionForm({
+  super.key, required this.isExpanded, required this.title});
   final bool isExpanded;
   final String title;
 

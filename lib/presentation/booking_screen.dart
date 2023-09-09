@@ -26,15 +26,6 @@ class BookingScreen extends StatelessWidget {
   //   const SizedBox(height: 8),
   // ];
 
-  // void addFunc() {
-  //   touristsList.add(
-  //     const ExpansionForm(isExpanded: true, title: 'Следующий турист '),
-  //   );
-  //   touristsList.add(
-  //     const SizedBox(height: 8),
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -84,21 +75,40 @@ class BookingScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: BlocBuilder<TouristFormBloc, TouristFormState>(
                 builder: (context, state) {
+                  void addFunc() {
+                    context.read<TouristFormBloc>().add(const AddTouristBloc(
+                            touristForm: Column(
+                          children: [
+                            ExpansionForm(
+                                isExpanded: true, title: 'Следующий турист'),
+                            SizedBox(height: 8),
+                          ],
+                        )));
+                  }
+
                   List<Widget> touristsList = state.tourists;
                   return Column(
                     children: [
-                      Column(
-                        children: touristsList,
-                      ),
+                      // const SizedBox(height: 8),
+                      // const ExpansionForm(isExpanded: true, title: 'Первый турист '),
+                      // const SizedBox(height: 8),
+                      // const ExpansionForm(isExpanded: false, title: 'Второй турист '),
+                      // const SizedBox(height: 8),
+                      // Column(
+                      //   children: touristsList,
+                      // ),
                       const SizedBox(height: 8),
                       const ApartmentInfo(),
                       const SizedBox(height: 8),
                       const ApartmentDetails(),
                       const SizedBox(height: 8),
                       CustomerInfo(),
-                      // AddTourist(
-                      //   addFunc: addFunc,
-                      // ),
+                      Column(
+                        children: touristsList,
+                      ),
+                      AddTourist(
+                        addFunc: addFunc,
+                      ),
                       const SizedBox(height: 8),
                       const TotalSum(),
                       const SizedBox(height: 8),

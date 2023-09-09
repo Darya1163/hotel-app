@@ -83,7 +83,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hotels_app/bloc/hotel_rooms_bloc.dart';
+import 'package:hotels_app/bloc/hotel_rooms_bloc/hotel_rooms_bloc.dart';
 import 'package:hotels_app/main.dart';
 
 import 'hotel_screen.dart';

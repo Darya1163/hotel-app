@@ -31,7 +31,7 @@ class AddTourist extends StatelessWidget {
             margin: const EdgeInsets.only(right: 16),
             height: 32,
             width: 32,
-            decoration: BoxDecoration(
+            decoration: BoxDecoration( 
               borderRadius: BorderRadius.circular(6),
               color: const Color(0xff0D72FF),
             ),
