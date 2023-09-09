@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotels_app/bloc/room_reservation_bloc.dart';
+import 'package:hotels_app/main.dart';
 
 import 'apartment_screen.dart';
 import 'payed_screen.dart';
@@ -41,56 +44,60 @@ class BookingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       minimum: const EdgeInsets.only(top: 50),
-      child: Scaffold(
-        appBar: buildMainAppBar(
-          'Бронирование',
-          IconButton(
-            icon: const Icon(
-              Icons.chevron_left,
-              size: 30,
+      child: BlocProvider(
+        create: (context) =>
+              getIt<RoomReservationBloc>()..add(RoomReservationLoadEvent()),
+        child: Scaffold(
+          appBar: buildMainAppBar(
+            'Бронирование',
+            IconButton(
+              icon: const Icon(
+                Icons.chevron_left,
+                size: 30,
+              ),
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const ApartmentScreen(),
+                  ),
+                );
+              },
             ),
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const ApartmentScreen(),
-                ),
-              );
-            },
           ),
-        ),
-        body: Container(
-          color: const Color(0xffF6F6F9),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                Column(
-                  children: touristsList,
-                ),
-                AddTourist(
-                  addFunc: addFunc,
-                ),
-                const SizedBox(height: 8),
-                const TotalSum(),
-                const SizedBox(height: 8),
-                Container(
-                  padding: const EdgeInsets.only(
-                      top: 12, bottom: 28, left: 16, right: 16),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.white,
+          body: Container(
+            color: const Color(0xffF6F6F9),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Column(
+                    children: touristsList,
                   ),
-                  child: CustomButton(
-                    title: 'Оплатить 198 036 ₽',
-                    pressedButton: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const PayedScreen(),
-                        ),
-                      );
-                    },
+                  AddTourist(
+                    addFunc: addFunc,
                   ),
-                ),
-              ],
+                  const SizedBox(height: 8),
+                  const TotalSum(),
+                  const SizedBox(height: 8),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        top: 12, bottom: 28, left: 16, right: 16),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.white,
+                    ),
+                    child: CustomButton(
+                      title: 'Оплатить 198 036 ₽',
+                      pressedButton: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const PayedScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
