@@ -30,7 +30,7 @@ class TotalSum extends StatelessWidget {
               const SizedBox(height: 16),
               BookingInfo(title: 'Сервисный сбор', value: '${state.room.serviceCharge} ₽'),
               const SizedBox(height: 16),
-              BookingInfoTotal(title: 'К оплате', value: '${state.room.tourPrice * touristsNum + state.room.serviceCharge + state.room.fuelCharge} ₽'),
+              BookingInfoTotal(title: 'К оплате', value: '${state.room.tourPrice /* * touristsNum*/ + state.room.serviceCharge + state.room.fuelCharge} ₽'),
             ],
           ),
         );

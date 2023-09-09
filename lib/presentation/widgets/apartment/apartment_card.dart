@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hotels_app/domain/hotel_rooms.dart';
 import '../../booking_screen.dart';
 import '../common/carousel_widget.dart';
 import '../common/custom_button.dart';
 import '../common/price.dart';
 import 'apartment_features.dart';
 
-
 class ApartmentCard extends StatelessWidget {
-  const ApartmentCard({super.key, required this.value, required this.period});
-
-  final String value;
-  final String period;
+  const ApartmentCard({super.key, required this.room});
+  final Room room;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +21,7 @@ class ApartmentCard extends StatelessWidget {
       child: Column(
         children: [
           const SizedBox(height: 16),
-          CarouselWidget(),
+          CarouselWidget(imageUrls: room.imageUrls),
           Container(
             margin: const EdgeInsets.only(bottom: 6, top: 8),
             child: Align(
@@ -60,19 +58,27 @@ class ApartmentCard extends StatelessWidget {
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  Icon(Icons.arrow_forward, color: Color(0xff0D72FF), size: 16,),
+                  Icon(
+                    Icons.arrow_forward,
+                    color: Color(0xff0D72FF),
+                    size: 16,
+                  ),
                 ],
               ),
             ),
           ),
           Price(
-            value: value,
-            period: period,
+            value: room.price.toString(),
+            period: room.pricePer,
           ),
           const SizedBox(height: 8),
-          CustomButton(title: 'Выбрать номер', pressedButton: () {
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => BookingScreen()));
-          }, ),
+          CustomButton(
+            title: 'Выбрать номер',
+            pressedButton: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => BookingScreen()));
+            },
+          ),
           const SizedBox(height: 16),
         ],
       ),

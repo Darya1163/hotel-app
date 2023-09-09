@@ -1,32 +1,32 @@
 class HotelRooms {
-  List<Rooms> rooms;
+  List<Room> rooms;
 
   HotelRooms({required this.rooms});
 
   factory HotelRooms.fromJson(Map<String, dynamic> json) {
     return HotelRooms(
-        rooms: (json["rooms"] as List).map((e) => Rooms.fromJson(e)).toList());
+        rooms: (json["rooms"] as List).map((e) => Room.fromJson(e)).toList());
   }
 }
 
-class Rooms {
+class Room {
   int id;
   String name;
   int price;
-  String? pricePer;
-  List<String>? peculiarities;
-  List<String>? imageUrls;
+  String pricePer;
+  List<String> peculiarities;
+  List<String> imageUrls;
 
-  Rooms(
+  Room(
       {required this.id,
       required this.name,
       required this.price,
-      this.pricePer,
-      this.peculiarities,
-      this.imageUrls});
+      required this.pricePer,
+      required this.peculiarities,
+      required this.imageUrls});
 
-  factory Rooms.fromJson(Map<String, dynamic> json) {
-    return Rooms(
+  factory Room.fromJson(Map<String, dynamic> json) {
+    return Room(
       id: json["id"],
       name: json["name"],
       price: json["price"],
@@ -36,11 +36,13 @@ class Rooms {
           : List<String>.from(json["peculiarities"]),
       imageUrls: json["image_urls"] == null
           ? []
-          : List<String>.from(json["image_urls"]),
+          : List<String>.from(json["image_urls"])
+              .map((e) => Uri.decodeFull(e))
+              .toList(),
     );
   }
 
-  Rooms copyWith({
+  Room copyWith({
     int? id,
     String? name,
     int? price,
@@ -48,7 +50,7 @@ class Rooms {
     List<String>? peculiarities,
     List<String>? imageUrls,
   }) =>
-      Rooms(
+      Room(
         id: id ?? this.id,
         name: name ?? this.name,
         price: price ?? this.price,

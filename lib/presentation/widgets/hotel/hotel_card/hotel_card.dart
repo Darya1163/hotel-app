@@ -26,7 +26,7 @@ class HotelCard extends StatelessWidget {
             ),
             child: Column(
               children: [
-                CarouselWidget(),
+                CarouselWidget(imageUrls: state.hotel.imageUrls),
                 const Rate(),
                 Container(
                   margin: const EdgeInsets.only(bottom: 6),
@@ -45,22 +45,19 @@ class HotelCard extends StatelessWidget {
                   alignment: Alignment.centerLeft,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 16),
-                    child: TextButton(
-                      onPressed: () { },
-                      child: Text(
-                        state.hotel.adress,
+                    child: Text(
+                      state.hotel.adress,
                       style: const TextStyle(
                         fontSize: 14,
                         fontFamily: 'SF Pro Display',
                         color: Color(0xff0D72FF),
-                      ), 
                       ),
                     ),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                    bottom: 16, top: 16,
+                    bottom: 16,
                   ),
                   child: Price(
                     value: 'от ${(state.hotel.minimalPrice.toString())} ₽',

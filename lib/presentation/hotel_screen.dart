@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hotels_app/bloc/hotel_bloc.dart';
+import 'package:hotels_app/main.dart';
 import 'apartment_screen.dart';
 import 'widgets/common/custom_appbar.dart';
 import 'widgets/common/custom_button.dart';
@@ -12,36 +15,40 @@ class HotelScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       minimum: const EdgeInsets.only(top: 50),
-      child: Scaffold(
-        appBar: buildMainAppBar('Отель', const Center()),
-        body: Container(
-          color: const Color(0xffF6F6F9),
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const HotelCard(),
-                const AboutHotel(),
-                const SizedBox(height: 12),
-                Container(
-                  height: 88, 
-                  color: Colors.white,
-                  child: Container(
-                    margin: const EdgeInsets.only(bottom: 28, top: 12, left: 16, right: 16),
-                    height: 48,
-                    width: double.infinity,
-                    child: CustomButton(
-                      title: 'К выбору номера',
-                      pressedButton: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => const ApartmentScreen(),
-                          ),
-                        );
-                      },
+      child: BlocProvider(
+        create: (context) => getIt<HotelBloc>()..add(HotelLoadEvent()),
+        child: Scaffold(
+          appBar: buildMainAppBar('Отель', const Center()),
+          body: Container(
+            color: const Color(0xffF6F6F9),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const HotelCard(),
+                  const AboutHotel(),
+                  const SizedBox(height: 12),
+                  Container(
+                    height: 88,
+                    color: Colors.white,
+                    child: Container(
+                      margin: const EdgeInsets.only(
+                          bottom: 28, top: 12, left: 16, right: 16),
+                      height: 48,
+                      width: double.infinity,
+                      child: CustomButton(
+                        title: 'К выбору номера',
+                        pressedButton: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const ApartmentScreen(),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

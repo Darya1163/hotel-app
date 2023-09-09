@@ -9,6 +9,12 @@ class CustomerInfo extends StatelessWidget {
   TextEditingController phoneInput = TextEditingController();
   TextEditingController emailInput = TextEditingController();
 
+  void validate(TextEditingController text) {
+    if (text.text == null || text.text.isEmpty) {
+      
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(

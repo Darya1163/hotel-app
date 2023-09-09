@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
+import 'package:hotels_app/bloc/hotel_rooms_bloc.dart';
 import 'package:hotels_app/bloc/room_reservation_bloc.dart';
 import 'package:hotels_app/data/services/hotel_service.dart';
+import 'package:hotels_app/presentation/apartment_screen.dart';
 import 'bloc/hotel_bloc.dart';
-import 'bloc/hotel_rooms_bloc.dart';
 import 'presentation/hotel_screen.dart';
 import 'repository/hotel_repository.dart';
 
@@ -19,6 +20,10 @@ void initGetIt() {
 
   getIt.registerLazySingleton<HotelBloc>(
       () => HotelBloc(hotelRepository: getIt()));
+
+  getIt.registerLazySingleton<HotelRoomsBloc>(
+      () => HotelRoomsBloc(hotelRepository: getIt()));
+
   getIt.registerLazySingleton<RoomReservationBloc>(
       () => RoomReservationBloc(hotelRepository: getIt()));
 }
@@ -26,47 +31,25 @@ void initGetIt() {
 void main() async {
   initGetIt();
   await dotenv.load();
-  runApp(Main());
+  runApp(const MyApp());
 }
 
-class Main extends StatelessWidget {
-  const Main({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BlocProvider(
-        create: (context) => getIt<HotelBloc>()..add(HotelLoadEvent()),
-        child: const HotelView(),
-      ),
-    );
-  }
-}
-
-class HotelView extends StatelessWidget {
-  const HotelView({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Hotel')),
-      body: Center(
-        child: BlocBuilder<HotelBloc, HotelState>(
-          builder: (context, state) {
-            if (state is HotelLoadedState) {
-              return Text(state.hotel.name,
-                  style: Theme.of(context).textTheme.displaySmall);
-            }
-            if (state is HotelErrorState) {
-              return Text(
-                state.message,
-                style: Theme.of(context).textTheme.displaySmall,
-              );
-            }
-            return Container();
-          },
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+        fontFamily: "SF Pro Display",
+        useMaterial3: true,
+        textTheme: const TextTheme(
+          displayMedium: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
         ),
       ),
+      home: const HotelScreen(),
     );
   }
 }
