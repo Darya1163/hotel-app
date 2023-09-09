@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:masked_text_field/masked_text_field.dart';
 
 class CustomTextField extends StatelessWidget {
   CustomTextField(
