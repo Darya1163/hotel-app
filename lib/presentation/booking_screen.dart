@@ -18,13 +18,7 @@ import 'widgets/common/custom_button.dart';
 class BookingScreen extends StatelessWidget {
   BookingScreen({super.key});
 
-  // List<Widget> touristsList = [
-  //   const SizedBox(height: 8),
-  //   const ExpansionForm(isExpanded: true, title: 'Первый турист '),
-  //   const SizedBox(height: 8),
-  //   const ExpansionForm(isExpanded: false, title: 'Второй турист '),
-  //   const SizedBox(height: 8),
-  // ];
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +34,19 @@ class BookingScreen extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => TouristFormBloc()
-              ..add(const AddTouristBloc(
+              ..add(AddTouristBloc(
                 touristForm: Column(
                   children: [
                     SizedBox(height: 8),
-                    ExpansionForm(isExpanded: true, title: 'Первый турист '),
+                    ExpansionForm(
+                      isExpanded: true,
+                      title: 'Первый турист ',
+                    ),
                     SizedBox(height: 8),
-                    ExpansionForm(isExpanded: false, title: 'Второй турист '),
+                    ExpansionForm(
+                      isExpanded: false,
+                      title: 'Второй турист ',
+                    ),
                     SizedBox(height: 8),
                   ],
                 ),
@@ -71,12 +71,12 @@ class BookingScreen extends StatelessWidget {
             ),
           ),
           body: Container(
-            color: const Color(0xffF6F6F9),
+            color: Color(0xffF6F6F9),
             child: SingleChildScrollView(
               child: BlocBuilder<TouristFormBloc, TouristFormState>(
                 builder: (context, state) {
                   void addFunc() {
-                    context.read<TouristFormBloc>().add(const AddTouristBloc(
+                    context.read<TouristFormBloc>().add(AddTouristBloc(
                             touristForm: Column(
                           children: [
                             ExpansionForm(
@@ -87,50 +87,45 @@ class BookingScreen extends StatelessWidget {
                   }
 
                   List<Widget> touristsList = state.tourists;
-                  return Column(
-                    children: [
-                      // const SizedBox(height: 8),
-                      // const ExpansionForm(isExpanded: true, title: 'Первый турист '),
-                      // const SizedBox(height: 8),
-                      // const ExpansionForm(isExpanded: false, title: 'Второй турист '),
-                      // const SizedBox(height: 8),
-                      // Column(
-                      //   children: touristsList,
-                      // ),
-                      const SizedBox(height: 8),
-                      const ApartmentInfo(),
-                      const SizedBox(height: 8),
-                      const ApartmentDetails(),
-                      const SizedBox(height: 8),
-                      CustomerInfo(),
-                      Column(
-                        children: touristsList,
-                      ),
-                      AddTourist(
-                        addFunc: addFunc,
-                      ),
-                      const SizedBox(height: 8),
-                      const TotalSum(),
-                      const SizedBox(height: 8),
-                      Container(
-                        padding: const EdgeInsets.only(
-                            top: 12, bottom: 28, left: 16, right: 16),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Colors.white,
+                  return Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 8),
+                        const ApartmentInfo(),
+                        const SizedBox(height: 8),
+                        const ApartmentDetails(),
+                        const SizedBox(height: 8),
+                        CustomerInfo(),
+                        Column(
+                          children: touristsList,
                         ),
-                        child: CustomButton(
-                          title: 'Оплатить 198 036 ₽',
-                          pressedButton: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const PayedScreen(),
-                              ),
-                            );
-                          },
+                        AddTourist(
+                          addFunc: addFunc,
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 8),
+                        const TotalSum(),
+                        const SizedBox(height: 8),
+                        Container(
+                          padding: const EdgeInsets.only(
+                              top: 12, bottom: 28, left: 16, right: 16),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: Colors.white,
+                          ),
+                          child: CustomButton(
+                            title: 'Оплатить 198 036 ₽',
+                            pressedButton: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => const PayedScreen(),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
                   );
                 },
               ),

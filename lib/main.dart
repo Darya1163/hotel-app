@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
-import 'package:hotels_app/bloc/hotel_rooms_bloc.dart';
-import 'package:hotels_app/bloc/room_reservation_bloc.dart';
+import 'package:hotels_app/bloc/hotel_rooms_bloc/hotel_rooms_bloc.dart';
+import 'package:hotels_app/bloc/room_reservation_bloc/room_reservation_bloc.dart';
 import 'package:hotels_app/data/services/hotel_service.dart';
 import 'package:hotels_app/presentation/apartment_screen.dart';
-import 'bloc/hotel_bloc.dart';
+import 'bloc/hotel_bloc/hotel_bloc.dart';
 import 'presentation/hotel_screen.dart';
 import 'repository/hotel_repository.dart';
 

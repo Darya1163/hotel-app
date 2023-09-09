@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hotels_app/bloc/room_reservation_bloc.dart';
+import 'package:hotels_app/bloc/room_reservation_bloc/room_reservation_bloc.dart';
 import 'package:hotels_app/domain/room_reservation.dart';
 
 import '../common/rate.dart';
@@ -25,7 +25,7 @@ class ApartmentInfo extends StatelessWidget {
           ),
           child: Column(
             children: [
-              const Rate(),
+              // const Rate(),
               Container(
                 margin: const EdgeInsets.only(bottom: 6),
                 child: Align(
